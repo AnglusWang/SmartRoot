@@ -1,7 +1,9 @@
-package com.angluswang.smartrobot;
+package com.angluswang.smartrobot.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.angluswang.smartrobot.R;
 
 public class MainActivity extends Activity {
 
