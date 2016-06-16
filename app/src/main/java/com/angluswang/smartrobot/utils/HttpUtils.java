@@ -3,8 +3,10 @@ package com.angluswang.smartrobot.utils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URLEncoder;
 
 /**
  * Created by Jeson on 2016/6/16.
@@ -14,7 +16,7 @@ import java.net.MalformedURLException;
 public class HttpUtils {
 
     private static final String URL = "http://www.tuling123.com/openapi/api";
-    private static final String API_KEY = "106d9a55156aabe582bef703a3ef39f3";
+    private static final String API_KEY = "c3083e3eeece9db67d3be980fa97d059";
 
     public static String doGet(String msg) {
 
@@ -66,7 +68,12 @@ public class HttpUtils {
 
     private static String setParams(String msg) {
 
-        String url = URL + "?key=" + API_KEY + "&info=" + msg;
+        String url = null;
+        try {
+            url = URL + "?key=" + API_KEY + "&info=" + URLEncoder.encode(msg, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         return url;
     }
 }
