@@ -13,7 +13,7 @@ public class ChatMessage {
     private Type mType;
     private Date mDate;
 
-    private enum Type {
+    public enum Type {
         INCOMING, OUTCOMING
     }
 

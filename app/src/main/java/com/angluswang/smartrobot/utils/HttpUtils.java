@@ -1,5 +1,10 @@
 package com.angluswang.smartrobot.utils;
 
+import com.angluswang.smartrobot.bean.ChatMessage;
+import com.angluswang.smartrobot.bean.Result;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
+import java.util.Date;
 
 /**
  * Created by Jeson on 2016/6/16.
@@ -17,6 +23,29 @@ public class HttpUtils {
 
     private static final String URL = "http://www.tuling123.com/openapi/api";
     private static final String API_KEY = "c3083e3eeece9db67d3be980fa97d059";
+
+    /**
+     * 发送一个消息，服务器返回一个消息
+     * @param msg
+     * @return
+     */
+    public ChatMessage sendMessage(String msg) {
+        ChatMessage chatMessage = new ChatMessage();
+
+        String jsonResult = doGet(msg);
+        Gson gson = new Gson();
+        Result result = null;
+        try {
+            gson.fromJson(jsonResult, Result.class);
+            chatMessage.setMsg(result.getText());
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+            chatMessage.setMsg("服务器繁忙，请稍后再试！");
+        }
+        chatMessage.setDate(new Date());
+        chatMessage.setType(ChatMessage.Type.INCOMING);
+        return chatMessage;
+    }
 
     public static String doGet(String msg) {
 
