@@ -6,22 +6,22 @@ package com.angluswang.smartrobot.bean;
  */
 
 public class Result {
-    private int mCode;
-    private String mText;
+    private int code;
+    private String text;
 
     public String getText() {
-        return mText;
+        return text;
     }
 
     public void setText(String text) {
-        mText = text;
+        this.text = text;
     }
 
     public int getCode() {
-        return mCode;
+        return code;
     }
 
     public void setCode(int code) {
-        mCode = code;
+        this.code = code;
     }
 }
