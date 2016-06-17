@@ -2,13 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:padding="5dp">
 
     <TextView
         android:id="@+id/id_from_msg_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="5dp"
         android:background="#bebebe"
         android:text="2016-06-16 22:00:00"
         android:textColor="#f5f5f5"
@@ -33,16 +35,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
                 android:layout_gravity="center"
-                android:text="呵呵哒"/>
+                android:text="呵呵哒"
+                android:textSize="12sp"/>
         </LinearLayout>
 
         <TextView
+            android:id="@+id/id_from_msg_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/chatfrom_bg_normal"
             android:gravity="center_vertical"
-            android:background="@drawable/chatfrom_bg_normal"/>
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
