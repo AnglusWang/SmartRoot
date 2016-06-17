@@ -29,14 +29,14 @@ public class HttpUtils {
      * @param msg
      * @return
      */
-    public ChatMessage sendMessage(String msg) {
+    public static ChatMessage sendMessage(String msg) {
         ChatMessage chatMessage = new ChatMessage();
 
         String jsonResult = doGet(msg);
         Gson gson = new Gson();
-        Result result = null;
+        Result result;
         try {
-            gson.fromJson(jsonResult, Result.class);
+            result = gson.fromJson(jsonResult, Result.class);
             chatMessage.setMsg(result.getText());
         } catch (JsonSyntaxException e) {
             e.printStackTrace();
@@ -74,18 +74,22 @@ public class HttpUtils {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
 
             try {
-                is.close();
+                if (is != null) {
+                    is.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             try {
-                baos.close();
+                if (baos != null) {
+                    baos.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
